@@ -22,24 +22,24 @@ class Character:
             self.outline = "#FF0000" #빨강색상 코드!
 
             if command=='up_pressed':
-               
-                self.position[1] -= 3
-                self.position[3] -= 3
+                
+                self.position[1] -= 1
+                self.position[3] -= 1
                 self.dir = "up"
 
             if command=='down_pressed':
-                self.position[1] += 3
-                self.position[3] += 3
+                self.position[1] += 1
+                self.position[3] += 1
                 self.dir = "down"
 
             if command=='left_pressed':
-                self.position[0] -= 3
-                self.position[2] -= 3
+                self.position[0] -= 1
+                self.position[2] -= 1
                 self.dir = "left"
                 
             if command=='right_pressed':
-                self.position[0] += 3
-                self.position[2] += 3
+                self.position[0] += 1
+                self.position[2] += 1
                 self.dir = "right"
         self.center = np.array([(self.position[0] + self.position[2]) / 2, (self.position[1] + self.position[3]) / 2]) 
         
@@ -49,8 +49,6 @@ class Character:
             flag.state = "fin"
     
     
-    
-    
     def check_item(self, item):
         check = self.overlap(self.position, item.position)
         
@@ -58,22 +56,6 @@ class Character:
             item.state = "drop"   
             self.item ='ready'
             
-   
-            
-    def check_block(self, blocks):
-        newPosition=[0,0,0,0]
-        for block in blocks:
-            newPosition[0] = block.position[0]-10
-            newPosition[1] = block.position[1]+10
-            newPosition[2] = block.position[2]-10
-            newPosition[3] = block.position[3]+10
-            
-            check = self.overlap(self.position, newPosition)
-            if check:
-                self.block = "block"
-                break
-            else:
-                self.block = None
         
             
     def overlap(self, ego_position, other_position):
