@@ -1,7 +1,5 @@
 from PIL import Image, ImageDraw, ImageFont
 import time
-import random
-import pygame
 from colorsys import hsv_to_rgb
 from Joystick import Joystick
 from Character import Character
@@ -16,11 +14,11 @@ from map3 import map3
     
 #hieght, width는 각각 240
 
-start = 0
+stage = 0
 map = map1
     
 def main():
-    global start
+    global stage
     global map
     
     color = "#F12FF1"
@@ -38,17 +36,14 @@ def main():
     blockImg = Image.open("/home/kau-esw/EswEscape/ESW/ESW/block.png")
     fireImg = Image.open("/home/kau-esw/EswEscape/ESW/ESW/fireball.png")
     titleImg = Image.open("/home/kau-esw/EswEscape/ESW/ESW/title.png")
-   
     
-    print(start)
-    
-    if start == 1:
+    if stage == 1:
         map = map3
-    elif start == 2:
+    elif stage == 2:
         map = map2      
-    elif start ==3:
+    elif stage ==3:
         map = map3
-    elif start ==4:
+    elif stage ==4:
         draw.rectangle((0,0,1000, 1000), fill = (105,105,105,0))
         draw.text((80, 120), "GAME CLEAR!!!!!",fill =(255, 0, 0, 0))
         joystick.disp.image(image)
@@ -136,9 +131,9 @@ def main():
                 character.item = None
                 
         if not joystick.button_B.value:
-            start = 1
+            stage = 1
                 
-        if start == 0 :
+        if stage == 0 :
             draw.bitmap((20,40), titleImg, fill = (0,250,154))
             draw.text((80, 200), "PRESS 'B' TO START",fill =(255, 0, 0, 0))      
         
@@ -183,7 +178,7 @@ def main():
                 draw.text((1, 200), "STAGE CLEAR",fill =(255, 0, 0, 0)) 
                 
                 time.sleep(2)
-                start +=1
+                stage +=1
                 main()
             
                       
