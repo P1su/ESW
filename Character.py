@@ -9,7 +9,6 @@ class Character:
         self.center = np.array([(self.position[0] + self.position[2]) / 2, (self.position[1] + self.position[3]) / 2])
         self.outline = "#FFFFFF"
         self.dir = 'none'
-        self.block = 'none'
         self.item = 'none'
 
     def move(self, blocks, command = None):
